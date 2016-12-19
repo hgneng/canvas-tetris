@@ -1,11 +1,12 @@
 var COLS = 10, ROWS = 20;
-var board = [];
+var board = []; // 记录屏幕哪个位置有方块
 var lose;
 var interval;
-var current; // current moving shape
+var current; // current moving shape // 用全局变量current记录当前正在移动的方块数据
 var currentX, currentY; // position of current shape
+// 方块形状以一个2行4列的矩阵表示，0或不存在表示该位置为空。看着1的分布来脑补具体形状。
 var shapes = [
-    [ 1, 1, 1, 1 ],
+    [ 1, 1, 1, 1 ], // 长条形
     [ 1, 1, 1, 0,
       1 ],
     [ 1, 1, 1, 0,
@@ -48,6 +49,7 @@ function newShape() {
 }
 
 // clears the board
+// 清除屏幕的方块，重新开始
 function init() {
     for ( var y = 0; y < ROWS; ++y ) {
         board[ y ] = [];
@@ -59,14 +61,14 @@ function init() {
 
 // keep the element moving down, creating new shapes and clearing lines
 function tick() {
-    if ( valid( 0, 1 ) ) {
+    if ( valid( 0, 1 ) ) { // 如果下一行还有位置就往下一格
         ++currentY;
     }
     // if the element settled
-    else {
-        freeze();
-        clearLines();
-        if (lose) {
+    else { // 否则固定方块
+        freeze(); 
+        clearLines(); // 尝试消除行
+        if (lose) { // 如果输了就重新开始
             newGame();
             return false;
         }
@@ -179,7 +181,7 @@ function newGame() {
     init();
     newShape();
     lose = false;
-    interval = setInterval( tick, 250 );
+    interval = setInterval( tick, 250 ); // 每隔250毫秒运行一次tick函数，即方块往下移动一行
 }
 
 newGame();
