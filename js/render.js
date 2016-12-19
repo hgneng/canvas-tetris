@@ -3,12 +3,14 @@ var ctx = canvas.getContext( '2d' );
 var W = 300, H = 600;
 var BLOCK_W = W / COLS, BLOCK_H = H / ROWS;
 
+// 在画布上画颜色方块
 // draw a single square at (x, y)
 function drawBlock( x, y ) {
     ctx.fillRect( BLOCK_W * x, BLOCK_H * y, BLOCK_W - 1 , BLOCK_H - 1 );
     ctx.strokeRect( BLOCK_W * x, BLOCK_H * y, BLOCK_W - 1 , BLOCK_H - 1 );
 }
 
+// 根据记录屏幕方块状态的board数组和记录当前正在降落方块的current数组渲染画面
 // draws the board and the moving shape
 function render() {
     ctx.clearRect( 0, 0, W, H );
@@ -35,4 +37,4 @@ function render() {
     }
 }
 
-setInterval( render, 30 );
+setInterval( render, 30 ); // 每30毫秒画一帧动画
