@@ -1,5 +1,8 @@
 canvas {
     display: block;
-    margin: auto;
+    margin: auto; /* 这一行等同于margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: auto;
+                     当margin-left和margin-right为auto时，block元素会水平居中；但margin并不能让元素垂直居中。
+                     对于inline元素，水平居中的方法是text-align: center，而不是用margin
+                  */
     border: 1px solid black;
 }
